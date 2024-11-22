@@ -1,4 +1,17 @@
 import L from 'leaflet';
+
+export function initializeMap() {
+  const map = L.map('map').setView([51.505, -0.09], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  return map;
+}
+
+/*
+import L from 'leaflet';
 import { fetchRealtimeData } from './api.js';
 
 export function initializeMap() {
@@ -24,3 +37,4 @@ export function initializeMap() {
       console.error('Error fetching real-time data:', error);
     });
 }
+*/
