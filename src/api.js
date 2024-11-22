@@ -1,29 +1,17 @@
 const geOpsAPIKey = '5cc87b12d7c5370001c1d6554fc9a992d72245bb94224a638ac3a215';  // Your API key
-const apiUrl = `https://api.geops.io/transit/vehicles?apiKey=${geOpsAPIKey}&transportType=bus`;  // Adjust transport type as needed
+const apiUrl = `https://api.geops.io/transit/vehicles?apiKey=${geOpsAPIKey}&transportType=bus`;  // Adjust transport type if needed
 
-export async function fetchVehicleData(map) {
+// Function to fetch vehicle data
+export async function fetchVehicleData() {
   try {
     const response = await fetch(apiUrl);
-    const data = await response.json();
-    updateMapWithVehicles(map, data);
-  } catch (error) {
-    console.error('Error fetching vehicle data:', error);
-  }
-}
-
-function updateMapWithVehicles(map, data) {
-  // Clear all existing markers
-  map.eachLayer(layer => {
-    if (layer.options && layer.options.pane === 'markerPane') {
-      map.removeLayer(layer);
+    if (!response.ok) {
+      throw new Error(`Error fetching data: ${response.status}`);
     }
-  });
-
-  // Add new markers
-  data.vehicles.forEach(vehicle => {
-    const { lat, lon, id } = vehicle;  // Adjust if API data structure is different
-    L.marker([lat, lon])
-      .addTo(map)
-      .bindPopup(`Vehicle ID: ${id}`);
-  });
+    const data = await response.json();
+    return data.vehicles;  // Assumes the response has a "vehicles" array
+  } catch (error) {
+    console.error('Error fetching GeOps data:', error);
+    return [];
+  }
 }
