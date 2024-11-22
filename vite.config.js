@@ -1,18 +1,15 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  optimizeDeps: {
+    include: ['mobility-toolbox-js', 'ol'], // Ensure both libraries are pre-bundled
+  },
   build: {
     rollupOptions: {
       external: [
-        // Add 'ol' here to treat it as an external dependency
+        'mobility-toolbox-js', // Ensure it is treated as an external dependency if needed
         'ol',
       ],
-    },
-  },
-  resolve: {
-    alias: {
-      // Optional: Resolve 'ol' to its ESM location in node_modules
-      ol: '/node_modules/ol',
     },
   },
 });
