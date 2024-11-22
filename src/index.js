@@ -1,4 +1,16 @@
 import L from 'leaflet';
+import { fetchVehicleData } from './api.js';
+import { initializeMap } from './leaflet-map.js';
+
+// Initialize the map
+const map = initializeMap();
+
+// Fetch vehicle data and update the map every 30 seconds
+fetchVehicleData(map);
+setInterval(() => fetchVehicleData(map), 30000);
+
+/*
+import L from 'leaflet';
 
 const geOpsAPIKey = '5cc87b12d7c5370001c1d6554fc9a992d72245bb94224a638ac3a215'; // Replace with your API key
 const apiUrl = `https://api.geops.io/transit/vehicles?apiKey=${geOpsAPIKey}&transportType=bus`; // Example for buses
@@ -53,3 +65,4 @@ export function initializeMap() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeMap();
 });
+*/
