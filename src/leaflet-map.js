@@ -1,28 +1,19 @@
 import L from 'leaflet';
 
-export function initializeMap() {
-  const map = L.map('map').setView([51.505, -0.09], 13);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  return map;
-}
-
-/*
-import L from 'leaflet';
 import { fetchRealtimeData } from './api.js';
 
 export function initializeMap() {
   // Initialize Leaflet map
   const map = L.map('map').setView([46.8, 8.33], 8); // Switzerland center
 
-  // Add OpenStreetMap tiles
+// Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap contributors',
   }).addTo(map);
+
+  return map;
+}
 
   // Fetch and display real-time data
   fetchRealtimeData()
@@ -37,4 +28,3 @@ export function initializeMap() {
       console.error('Error fetching real-time data:', error);
     });
 }
-*/
