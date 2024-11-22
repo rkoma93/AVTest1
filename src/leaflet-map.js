@@ -1,30 +1,32 @@
 import L from 'leaflet';
-
-import { fetchRealtimeData } from './api.js';
+import { fetchVehicleData } from './api.js';
 
 export function initializeMap() {
-  // Initialize Leaflet map
-  const map = L.map('map').setView([46.8, 8.33], 8); // Switzerland center
+  const map = L.map('map').setView([51.505, -0.09], 13);  // Example: center on London
 
-// Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
     maxZoom: 19,
-    attribution: '© OpenStreetMap contributors',
   }).addTo(map);
 
   return map;
 }
 
-  // Fetch and display real-time data
-  fetchRealtimeData()
-    .then((vehicles) => {
-      vehicles.forEach((vehicle) => {
-        L.marker([vehicle.location.latitude, vehicle.location.longitude])
-          .bindPopup(`Line: ${vehicle.line}<br>Status: ${vehicle.status}`)
-          .addTo(map);
-      });
-    })
-    .catch((error) => {
-      console.error('Error fetching real-time data:', error);
-    });
+export async function updateMapWithVehicles(map) {
+  const vehicles = await fetchVehicleData();
+
+  // Clear existing vehicle markers
+  map.eachLayer(layer => {
+    if (layer.options && layer.options.pane === 'markerPane') {
+      map.removeLayer(layer);
+    }
+  });
+
+  // Add new vehicle markers
+  vehicles.forEach(vehicle => {
+    const { lat, lon, id } = vehicle;  // Adjust if API response structure is different
+    L.marker([lat, lon])
+      .addTo(map)
+      .bindPopup(`Vehicle ID: ${id}`);
+  });
 }
