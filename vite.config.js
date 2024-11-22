@@ -1,10 +1,18 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: '.', // Ensures the root directory contains the index.html
   build: {
-    outDir: 'dist', // The output directory for the built files
-    emptyOutDir: true, // Clears the dist folder before each build
+    rollupOptions: {
+      external: [
+        // Add 'ol' here to treat it as an external dependency
+        'ol',
+      ],
+    },
   },
-  publicDir: 'public', // Optional: if you have static assets in a public folder
+  resolve: {
+    alias: {
+      // Optional: Resolve 'ol' to its ESM location in node_modules
+      ol: '/node_modules/ol',
+    },
+  },
 });
