@@ -2,14 +2,18 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   optimizeDeps: {
-    include: ['mobility-toolbox-js', 'ol'], // Ensure both libraries are pre-bundled
+    include: ['ol'], // Ensure Vite optimizes OpenLayers
   },
   build: {
     rollupOptions: {
       external: [
-        'mobility-toolbox-js', // Ensure it is treated as an external dependency if needed
-        'ol',
+        'ol', // Externalize OpenLayers if needed
       ],
+    },
+  },
+  resolve: {
+    alias: {
+      ol: '/node_modules/ol', // Add an alias to help resolve OpenLayers
     },
   },
 });
