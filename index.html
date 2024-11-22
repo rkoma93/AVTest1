@@ -1,15 +1,24 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Public Transport Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="/src/styles/styles.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Transport Map</title>
+
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Include your custom CSS if any -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- The div where the map will be displayed -->
     <div id="map" style="height: 100vh;"></div>
-    <script type="module" src="/src/index.js"></script>
-  </body>
+
+    <!-- Include Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- Include your custom JavaScript -->
+    <script src="src/index.js"></script>
+</body>
 </html>
