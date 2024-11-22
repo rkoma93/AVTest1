@@ -2,7 +2,7 @@ import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
-import { Tracker } from 'mobility-toolbox-js';
+//import { Tracker } from 'mobility-toolbox-js';
 
 export function initializeMap() {
   // Initialize OpenLayers map
