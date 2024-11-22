@@ -1,10 +1,7 @@
-import { initializeMap, updateMapWithVehicles } from './leaflet-map.js';
+import { initializeMap, initializeTracker } from './ol-tracker-map.js';
 
-// Initialize the map
+// Initialize the OpenLayers map
 const map = initializeMap();
 
-// Initial fetch and render of vehicle data
-updateMapWithVehicles(map);
-
-// Set an interval to fetch and update vehicle data every 30 seconds
-setInterval(() => updateMapWithVehicles(map), 30000);
+// Initialize the tracker to display real-time vehicle positions
+initializeTracker(map);
