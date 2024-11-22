@@ -1,13 +1,10 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: '/', // Root folder containing index.html
+  root: '.', // Ensures the root directory contains the index.html
   build: {
-    outDir: '../dist', // Output folder
-    emptyOutDir: true,
-    rollupOptions: {
-      input: 'index.html' // Specify the entry HTML file
-    }
-  }
+    outDir: 'dist', // The output directory for the built files
+    emptyOutDir: true, // Clears the dist folder before each build
+  },
+  publicDir: 'public', // Optional: if you have static assets in a public folder
 });
