@@ -1,27 +1,13 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'; // Import once
 
+// Use defineConfig for proper typing and configuration export
 export default defineConfig({
   optimizeDeps: {
-    include: ['ol'], // Ensure OpenLayers is bundled during development
+    include: ['rbush'], // Example for including dependencies like rbush
   },
   build: {
     rollupOptions: {
-      external: [
-        'ol', // Externalize OpenLayers if needed, e.g., for CDN usage
-      ],
+      external: ['ol', 'mobility-toolbox-js'], // Add necessary external modules here
     },
-  },
-  resolve: {
-    alias: {
-      ol: '/node_modules/ol', // Ensure Vite resolves the OpenLayers module
-    },
-  },
-});
-
-import { defineConfig } from 'vite';
-
-export default defineConfig({
-  optimizeDeps: {
-    include: ['rbush'],
   },
 });
