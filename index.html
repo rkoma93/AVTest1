@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Real-Time Transport Map</title>
-  <link rel="stylesheet" href="./src/style/styles.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol/ol.css" />
-  <style>
-    #map {
-      height: 100vh; /* Full viewport height */
-      width: 100%;   /* Full width */
-    }
-  </style>
-</head>
-<body>
-  <div id="map"></div>
-  <script type="module" src="./src/index.js"></script>
-</body>
-</html>
+<script type="module">
+  import Map from 'https://cdn.jsdelivr.net/npm/ol/Map.js';
+  import View from 'https://cdn.jsdelivr.net/npm/ol/View.js';
+  import TileLayer from 'https://cdn.jsdelivr.net/npm/ol/layer/Tile.js';
+  import XYZ from 'https://cdn.jsdelivr.net/npm/ol/source/XYZ.js';
+
+  const map = new Map({
+    target: 'map',
+    layers: [
+      new TileLayer({
+        source: new XYZ({
+          url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        }),
+      }),
+    ],
+    view: new View({
+      center: [0, 0],
+      zoom: 2,
+    }),
+  });
+</script>
