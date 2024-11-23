@@ -2,12 +2,10 @@ import Map from 'ol/Map.js';
 import View from 'ol/View.js';
 import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
-//import { Tracker } from 'mobility-toolbox-js';
 
 export function initializeMap() {
-  // Initialize OpenLayers map
   const map = new Map({
-    target: 'map',
+    target: 'map', // Matches the ID in the HTML
     layers: [
       new TileLayer({
         source: new XYZ({
@@ -16,9 +14,8 @@ export function initializeMap() {
       }),
     ],
     view: new View({
-      center: [0, 0], // Center the map on a default location
-      zoom: 2, // Initial zoom level
-      projection: 'EPSG:3857',
+      center: [0, 0], // Default center in EPSG:3857 (Web Mercator)
+      zoom: 2,        // Initial zoom level
     }),
   });
 
